@@ -10,12 +10,9 @@
 </head>
 <body>
 <h1>Add student</h1>
-<form:form method="post" modelAttribute="student">
-    <form:input path="firstName"/>
-    <form:input path="lastName"/>
-    <form:select itemLabel="name" path="studentGroup" items="${groups}" />
-    <form:checkboxes itemLabel="title" path="books" items="${books}" />
-
+<form:form method="post" modelAttribute="book">
+    <form:input path="title"/>
+    <form:select itemLabel="firstName" path="publisher" items="${publishers}" />
     <input type="submit" value="Save">
 </form:form>
 

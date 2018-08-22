@@ -5,8 +5,10 @@ import lombok.extern.java.Log;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.entity.Book;
 import pl.coderslab.entity.StudentGroup;
 import pl.coderslab.entity.Student;
+import pl.coderslab.repository.BookRepository;
 import pl.coderslab.repository.StudentGroupRepository;
 import pl.coderslab.repository.StudentRepository;
 
@@ -20,10 +22,12 @@ public class StudentController {
 
     private final StudentGroupRepository groupRepository;
     private final StudentRepository studentRepository;
+    private final BookRepository bookRepository;
 
-    public StudentController(StudentGroupRepository groupRepository, StudentRepository studentRepository) {
+    public StudentController(StudentGroupRepository groupRepository, StudentRepository studentRepository, BookRepository bookRepository) {
         this.groupRepository = groupRepository;
         this.studentRepository = studentRepository;
+        this.bookRepository = bookRepository;
     }
 
     @ModelAttribute("languages")
@@ -35,6 +39,11 @@ public class StudentController {
     @ModelAttribute("groups")
     public List<StudentGroup> getGroups() {
         return groupRepository.findAll();
+    }
+
+    @ModelAttribute("books")
+    public List<Book> getBooks() {
+        return bookRepository.findAll();
     }
 
     @GetMapping("/list")
