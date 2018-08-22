@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import pl.coderslab.entity.StudentGroup;
 
 @Repository
-public interface GroupRepository extends JpaRepository<StudentGroup, Long> {
+public interface StudentGroupRepository extends JpaRepository<StudentGroup, Long> {
 }

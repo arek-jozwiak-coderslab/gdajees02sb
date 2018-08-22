@@ -7,7 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.entity.StudentGroup;
 import pl.coderslab.entity.Student;
-import pl.coderslab.repository.GroupRepository;
+import pl.coderslab.repository.StudentGroupRepository;
+import pl.coderslab.repository.StudentRepository;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,10 +18,12 @@ import java.util.List;
 @RequestMapping("/student")
 public class StudentController {
 
-    private final GroupRepository groupRepository;
+    private final StudentGroupRepository groupRepository;
+    private final StudentRepository studentRepository;
 
-    public StudentController(GroupRepository groupRepository) {
+    public StudentController(StudentGroupRepository groupRepository, StudentRepository studentRepository) {
         this.groupRepository = groupRepository;
+        this.studentRepository = studentRepository;
     }
 
     @ModelAttribute("languages")
@@ -47,6 +50,13 @@ public class StudentController {
         return "student/add";
     }
 
+    @PostMapping("/add")
+    @ResponseBody
+    public String perform(@ModelAttribute Student student){
+        studentRepository.save(student);
+        return ""+ student;
+    }
+
     @GetMapping("/add-old")
     public String addOld(Model model){
         Student student = new Student();
@@ -67,17 +77,5 @@ public class StudentController {
         System.out.println("**" +student.getLastName()+"**");
         return "--added-old-";
     }
-
-    @PostMapping("/add")
-    @ResponseBody
-    public String perform(@ModelAttribute Student student){
-        System.out.println(student.getFirstName());
-        System.out.println(student.getLastName());
-        return ""+ student;
-    }
-
-
-
-
 
 }
