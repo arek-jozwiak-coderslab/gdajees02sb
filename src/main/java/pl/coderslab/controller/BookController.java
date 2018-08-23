@@ -5,12 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.entity.Book;
 import pl.coderslab.entity.Person;
 import pl.coderslab.entity.Publisher;
 import pl.coderslab.repository.BookRepository;
 import pl.coderslab.repository.PublisherRepository;
+import pl.coderslab.validator.ValidationGroupName;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
@@ -88,7 +90,11 @@ public class BookController {
     }
 
     @PostMapping("/edit/*")
-    public String editPerform(@ModelAttribute Book book) {
+    public String editPerform(Model model, @Valid Book book, BindingResult result) {
+        if (result.hasErrors()) {
+            model.addAttribute("publishers", publisherRepository.findAll());
+            return "book/edit";
+        }
         bookRepository.save(book);
         return "redirect:/book/list";
     }

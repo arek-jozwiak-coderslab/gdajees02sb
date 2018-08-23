@@ -6,9 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.coderslab.entity.Book;
+import pl.coderslab.validator.ValidationGroupName;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
+import javax.validation.groups.Default;
 import java.util.Set;
 
 @Controller
@@ -25,7 +27,8 @@ public class ValidationController {
         //read from file
         Book book = new Book();
         book.setDescription("some desc");
-        Set<ConstraintViolation<Book>> validate = validator.validate(book);
+        Set<ConstraintViolation<Book>> validate =
+                validator.validate(book, ValidationGroupName.class);
         if (!validate.isEmpty()) {
 
             for (ConstraintViolation<Book> bookConstraintViolation : validate) {

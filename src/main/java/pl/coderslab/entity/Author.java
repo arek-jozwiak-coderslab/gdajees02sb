@@ -1,6 +1,7 @@
 package pl.coderslab.entity;
 
 import lombok.Data;
+import pl.coderslab.validator.YearOfBirth;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,4 +17,6 @@ public class Author {
 
     private String firstName;
     private String lastName;
+    @YearOfBirth
+    private Integer yearOfBirth;
 }
