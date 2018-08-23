@@ -9,10 +9,10 @@
     <title>Insert title here</title>
 </head>
 <body>
-<h1>Add student</h1>
-<form:form method="post" modelAttribute="book">
+<h1>Edit student</h1>
+<form:form method="post"  modelAttribute="book">
     <%@include file="book_form.jsp"%>
-    <input type="submit" value="Save">
+    <input type="submit" value="Update">
 </form:form>
 
 </body>

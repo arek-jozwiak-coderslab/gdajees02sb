@@ -16,10 +16,21 @@
 <h3>Groups list:</h3>
 
 <table>
+    <thead>
+    <tr>
+        <td>Title</td>
+        <td>Publisher</td>
+        <td>Action</td>
+    </tr>
+    </thead>
     <c:forEach items="${books}" var="book">
         <tr>
             <td> ${book.title} </td>
-            <td> ${book.publisher.firstName} </td>
+            <td> ${book.publisher.firstName} ${book.publisher.lastName}</td>
+            <td>
+                <a href="/book/delete/${book.id}">delete</a>
+                <a href="/book/edit/${book.id}">edit</a>
+            </td>
         </tr>
     </c:forEach>
 
