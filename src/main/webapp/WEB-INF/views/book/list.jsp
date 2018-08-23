@@ -8,8 +8,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+
 <head>
     <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"  ></script>
 </head>
 <body>
 <h1>Student List</h1>
@@ -29,12 +31,19 @@
             <td> ${book.publisher.firstName} ${book.publisher.lastName}</td>
             <td>
                 <a href="/book/delete/${book.id}">delete</a>
-                <a href="/book/edit/${book.id}">edit</a>
+                <a class="confirm" href="/book/edit/${book.id}">edit</a>
             </td>
         </tr>
     </c:forEach>
 
 </table>
-
+<script type="text/javascript">
+    $(".confirm").on("click", function () {
+        console.log("some click");
+        if (confirm('Are you sure')) {
+            window.location = $(this).href;
+        }
+    });
+</script>
 </body>
 </html>

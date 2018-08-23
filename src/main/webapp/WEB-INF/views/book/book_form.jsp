@@ -1,3 +1,7 @@
 <form:hidden path="id"/>
-<form:input path="title"/>
-<form:select itemLabel="firstName" path="publisher" items="${publishers}" />
+Title:
+<form:input path="title"/><form:errors path="title" cssClass="classError" /><br/>
+Description:
+<form:input path="description"/><br/>
+Publisher:
+<form:select itemLabel="firstName" path="publisher" items="${publishers}" /><br/>

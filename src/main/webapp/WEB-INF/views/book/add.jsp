@@ -8,6 +8,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Insert title here</title>
 </head>
+<style type="text/css">
+    .classError {color: red; font-size: small; border: aqua solid 3px}
+</style>
 <body>
 <h1>Add student</h1>
 <form:form method="post" modelAttribute="book">
