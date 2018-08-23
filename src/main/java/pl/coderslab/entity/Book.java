@@ -6,11 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Data
@@ -33,6 +35,13 @@ public class Book {
     @ManyToOne
     @NonNull
     private Publisher publisher;
+    @NotEmpty
+
+    @ManyToMany
+    private List<Author> authors;
+
+    @Min(1)
+    private int pages;
 
 
 }
